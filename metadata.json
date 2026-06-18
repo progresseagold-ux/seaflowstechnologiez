@@ -1,0 +1,10 @@
+{
+  "name": "Seaflows Technologies",
+  "description": "Enterprise Solar Energy and CCTV E-Commerce & Service Management Platform with AI Assistant, calculators, customized quotes, booking controls, and dashboards.",
+  "requestFramePermissions": [
+    "geolocation"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

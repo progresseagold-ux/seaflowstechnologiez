@@ -1,0 +1,620 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #0A2342;
+  --color-gold: #FDB813;
+  --color-white: #FFFFFF;
+  --color-gray: #F5F7FA;
+  --color-green: #16A34A;
+  --color-text-main: #1F2937;
+  
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-heading: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+/* ========================================================
+   CLEAN MINIMALISM THEME INJECTIONS & GLOBAL OVERRIDES
+   ======================================================== */
+
+:root {
+  --navy: #0A2342;
+  --gold: #FDB813;
+  --white: #FFFFFF;
+  --gray: #F5F7FA;
+  --green: #16A34A;
+  --text-main: #1F2937;
+  --text-muted: #56657a;
+  --border-light: rgba(10, 35, 66, 0.08);
+}
+
+.dark-theme, html.dark-theme {
+  --navy: #F8FAFC;
+  --gold: #FDB813;
+  --white: #061d3c; /* Pristine Royal Seablue container background */
+  --gray: #020b18;  /* Luxurious Midnight Ocean Seablue background */
+  --green: #22C55E;
+  --text-main: #F1F5F9;
+  --text-muted: #94A3B8;
+  --border-light: rgba(245, 247, 250, 0.12);
+}
+
+/* Dark mode generic overrides */
+.dark-theme header {
+  background-color: rgba(11, 19, 43, 0.95) !important;
+  border-bottom: 1px solid rgba(248, 250, 252, 0.1) !important;
+  box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.4) !important;
+}
+
+.dark-theme footer {
+  background-color: #050914 !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.dark-theme input, 
+.dark-theme select, 
+.dark-theme textarea {
+  background-color: #050912 !important;
+  border-color: rgba(248, 250, 252, 0.2) !important;
+}
+
+.dark-theme input:focus, 
+.dark-theme select:focus, 
+.dark-theme textarea:focus {
+  border-color: var(--gold) !important;
+  box-shadow: 0 0 0 3px rgba(253, 184, 19, 0.15) !important;
+}
+
+/* Sub-Tab Navigation Overrides for dark mode */
+.dark-theme div[class*="bg-[#030913]"] button,
+.dark-theme div[class*="bg-[#060c18]"] button {
+  border-color: rgba(248, 250, 252, 0.12) !important;
+}
+
+.dark-theme div[class*="bg-[#030913]"] button[class*="bg-[#FDB813]"],
+.dark-theme div[class*="bg-[#060c18]"] button[class*="bg-[#FDB813]"],
+.dark-theme div[class*="bg-[#030913]"] button[class*="text-[#0A2342]"][class*="bg-[#FDB813]"] {
+  background-color: var(--gold) !important;
+  color: #0A2342 !important;
+  border-color: var(--gold) !important;
+}
+
+/* Active Header item in dark theme */
+.dark-theme header nav button[class*="text-[#FDB813]"],
+.dark-theme header nav button[class*="text-\[\#FDB813\]"] {
+  color: var(--gold) !important;
+  background-color: #0F1A36 !important;
+  border-color: rgba(253, 184, 19, 0.4) !important;
+}
+
+/* Theme Toggle Button Styling */
+.dark-theme-toggle {
+  background-color: rgba(10, 35, 66, 0.04) !important;
+  border: 1px solid rgba(10, 35, 66, 0.08) !important;
+}
+
+.dark-theme-toggle:hover {
+  background-color: rgba(10, 35, 66, 0.08) !important;
+  border-color: rgba(10, 35, 66, 0.15) !important;
+}
+
+.dark-theme .dark-theme-toggle {
+  background-color: rgba(248, 250, 252, 0.05) !important;
+  border: 1px solid rgba(248, 250, 252, 0.1) !important;
+}
+
+.dark-theme .dark-theme-toggle:hover {
+  background-color: rgba(248, 250, 252, 0.1) !important;
+  border-color: rgba(248, 250, 252, 0.2) !important;
+}
+
+/* Body & Core Containers Resets */
+html {
+  scroll-behavior: smooth !important;
+}
+body, html, #root {
+  background-color: var(--gray) !important;
+  color: var(--text-main) !important;
+  font-family: "Inter", sans-serif !important;
+}
+
+/* Force Light Theme Colors on Dark Tailwind background utility classes */
+div[class*="bg-[#020610]"], 
+div[class*="bg-slate-950"], 
+div[class*="bg-gray-950"],
+.bg-slate-950,
+.bg-gray-950 {
+  background-color: var(--gray) !important;
+}
+
+/* Cards & Panel Wrappers Overrides */
+div[class*="bg-[#040916]"], 
+div[class*="bg-[#060c18]"], 
+div[class*="bg-[#030913]"],
+div[class*="bg-[#070e1b]"], 
+div[class*="bg-[#0a1120]"],
+div[class*="bg-[#030812]"],
+div[class*="bg-[#0e182a]"],
+div[class*="bg-[#090f1a]"],
+div[class*="bg-[#050b14]"],
+div[class*="bg-[#111928]"],
+ul[class*="bg-[#0a1120]"],
+section[class*="bg-[#030913]"],
+.bg-\[\#040916\], 
+.bg-\[\#060c18\], 
+.bg-\[\#030913\], 
+.bg-\[\#070e1b\], 
+.bg-\[\#0a1120\],
+.bg-\[\#030812\],
+.bg-\[\#0a1120\]\/40 {
+  background-color: var(--white) !important;
+}
+
+/* Specific component containers block overrides */
+#static-pages-ecosystem,
+#store-ecosystem,
+#booking-system-ecosystem,
+#customer-portal-ecosystem,
+#calculator-ecosystem,
+#admin-dashboard-view {
+  background-color: var(--white) !important;
+  color: var(--text-main) !important;
+  border-color: var(--border-light) !important;
+  box-shadow: 0 10px 30px -10px rgba(10, 35, 66, 0.04), 0 1px 3px 0 rgba(10, 35, 66, 0.02) !important;
+}
+
+/* Hero Section gradient overlay matching radial gradient in design template */
+div[class*="bg-gradient-to-br from-[#0c182f] to-[#040e1b]"],
+.bg-gradient-to-br.from-\[\#0c182f\].to-\[\#040e1b\] {
+  background: radial-gradient(circle at top right, rgba(253, 184, 19, 0.08), transparent 60%), var(--white) !important;
+  border: 1px solid var(--border-light) !important;
+  box-shadow: 0 20px 40px rgba(10, 35, 66, 0.04) !important;
+}
+
+.bg-gradient-to-br.from-blue-950\/20.to-indigo-950\/25,
+div[class*="bg-gradient-to-br from-blue-950"] {
+  background: linear-gradient(135deg, rgba(10, 35, 66, 0.02) 0%, rgba(10, 35, 66, 0.05) 100%) !important;
+  border: 1px solid var(--border-light) !important;
+}
+
+/* Active distributed grid banner override */
+div[class*="bg-[#0c1626]/60"],
+.bg-\[\#0c1626\]\/60 {
+  background-color: rgba(10, 35, 66, 0.05) !important;
+  color: var(--navy) !important;
+  border-color: rgba(10, 35, 66, 0.1) !important;
+}
+
+/* Highlight badge */
+span[class*="bg-amber-950/40"],
+span[class*="bg-[#FDB813]/10"],
+.bg-amber-950\/40,
+.bg-blue-950\/40 {
+  background-color: rgba(253, 184, 19, 0.15) !important;
+  color: var(--navy) !important;
+  border-color: rgba(253, 184, 19, 0.2) !important;
+}
+
+/* Borders Globally */
+div, header, footer, section, table, tr, td, th, li, hr, button, input, select, textarea {
+  border-color: var(--border-light) !important;
+}
+
+/* Text Colors */
+p, span, li, td, th {
+  color: var(--text-muted) !important;
+}
+
+/* Solid text highlights */
+h1, h2, h3, h4, h5, h6, strong,
+.text-white,
+span[class*="text-white"],
+span[class*="text-gray-150"],
+span[class*="text-gray-200"],
+span[class*="text-gray-300"],
+button[class*="text-white"],
+.font-bold,
+.font-extrabold {
+  color: var(--navy) !important;
+}
+
+/* Dark text mute falls */
+.text-gray-400, .text-gray-500, .text-gray-450, .text-gray-600 {
+  color: var(--text-muted) !important;
+}
+
+/* Golden elements */
+.text-\[\#FDB813\], .text-solar-gold {
+  color: var(--navy) !important;
+}
+
+span.text-\[\#FDB813\] {
+  color: var(--navy) !important;
+}
+
+svg {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Sticky Header Customization */
+header {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border-bottom: 1px solid rgba(10, 35, 66, 0.06) !important;
+  box-shadow: 0 4px 20px -5px rgba(10, 35, 66, 0.03) !important;
+}
+
+/* Header logo & slogan adjustments */
+header span[class*="text-white"] {
+  color: var(--navy) !important;
+}
+
+header span[class*="text-[#FDB813]"] {
+  color: var(--gold) !important;
+}
+
+/* Navigation System and list elements */
+header nav button {
+  color: var(--navy) !important;
+  opacity: 0.8;
+  font-weight: 600 !important;
+  background: transparent !important;
+}
+
+header nav button:hover {
+  opacity: 1;
+  background-color: var(--gray) !important;
+}
+
+/* Active navigation highlighted button style */
+header nav button[class*="text-[#FDB813]"],
+header nav button[class*="text-\[\#FDB813\]"] {
+  opacity: 1 !important;
+  color: var(--navy) !important;
+  font-weight: 700 !important;
+  background-color: var(--white) !important;
+  border: 1px solid var(--border-light) !important;
+  box-shadow: 0 2px 8px -3px rgba(10, 35, 66, 0.1) !important;
+  border-bottom: 2px solid var(--gold) !important;
+  border-radius: 6px !important;
+}
+
+/* Quick shortcut cards in main page */
+div[class*="bg-[#030913]"][class*="border-gray-850"]:hover {
+  border-color: var(--navy) !important;
+  box-shadow: 0 12px 30px -8px rgba(10, 35, 66, 0.06) !important;
+  transform: translateY(-2px);
+  transition: all 0.25s ease;
+}
+
+/* Dynamic Tools & Buttons Customization */
+button.bg-\[\#FDB813\], 
+a.bg-\[\#FDB813\],
+button[class*="bg-[#FDB813]"],
+button[class*="bg-amber-400"],
+.btn-secondary {
+  background: var(--gold) !important;
+  color: #0A2342 !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 14px -3px rgba(253, 184, 19, 0.4) !important;
+  border: none !important;
+}
+
+button.bg-\[\#FDB813\]:hover,
+button[class*="bg-[#FDB813]"]:hover,
+.btn-secondary:hover {
+  background: #fca800 !important;
+  box-shadow: 0 6px 20px -3px rgba(253, 184, 19, 0.6) !important;
+}
+
+/* Transparent Outline Buttons */
+button[class*="bg-transparent"][class*="text-white"],
+button[class*="border-gray-700"] {
+  background: transparent !important;
+  color: var(--navy) !important;
+  border: 1px solid var(--navy) !important;
+}
+
+button[class*="bg-transparent"][class*="text-white"]:hover {
+  background: rgba(10, 35, 66, 0.05) !important;
+}
+
+/* Metric cards list */
+div[class*="bg-[#030913]/90"] {
+  background-color: var(--white) !important;
+  border: 1px solid var(--border-light) !important;
+}
+
+/* Forms, inputs, listings, select boxes */
+input, select, textarea {
+  background-color: var(--white) !important;
+  color: var(--text-main) !important;
+  border: 1px solid rgba(10, 35, 66, 0.15) !important;
+  border-radius: 8px !important;
+  padding: 10px 14px !important;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.02) !important;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--navy) !important;
+  outline: none !important;
+  box-shadow: 0 0 0 3px rgba(10, 35, 66, 0.08) !important;
+}
+
+/* Minimalist Sub navigations inside tabs (e.g. BookingSystem, StaticPages, CustomerPortal, Calculator) */
+div[class*="bg-[#030913]"] button,
+div[class*="bg-[#060c18]"] button {
+  background-color: var(--gray) !important;
+  color: var(--text-muted) !important;
+  border: 1px solid rgb(226, 232, 240) !important;
+}
+
+div[class*="bg-[#030913]"] button[class*="bg-[#FDB813]"],
+div[class*="bg-[#060c18]"] button[class*="bg-[#FDB813]"],
+div[class*="bg-[#030913]"] button[class*="text-[#0A2342]"][class*="bg-[#FDB813]"],
+div[class*="bg-[#030913]"] button[class*="bg-blue-600/20"],
+div[class*="bg-[#060c18]"] button[class*="bg-blue-600/20"] {
+  background-color: var(--navy) !important;
+  color: var(--white) !important;
+  border-color: var(--navy) !important;
+}
+
+/* Tables, lists header customizer */
+thead, tr[class*="bg-gray-900"], tr[class*="bg-[#090f1a]"] {
+  background-color: var(--gray) !important;
+}
+
+thead th {
+  color: var(--navy) !important;
+  font-weight: 700 !important;
+}
+
+td {
+  background-color: var(--white) !important;
+}
+
+/* Chatbot Overrides to preserve cleanliness and minimalism in navigation */
+div[class*="max-h-[500px]"] {
+  background-color: var(--white) !important;
+  box-shadow: 0 20px 50px -10px rgba(10, 35, 66, 0.15) !important;
+  border: 1px solid var(--border-light) !important;
+}
+
+div[class*="max-h-[500px]"] header,
+div[class*="max-h-[500px]"] div[class*="bg-[#0a1120]"] {
+  background-color: var(--navy) !important;
+  color: var(--white) !important;
+}
+
+div[class*="max-h-[500px]"] div[class*="bg-[#0a1120]"] span {
+  color: var(--white) !important;
+}
+
+/* User vs model dialog clouds */
+div[class*="bg-blue-600"][class*="self-end"] {
+  background-color: var(--navy) !important;
+  color: var(--white) !important;
+}
+
+div[class*="bg-[#030913]"][class*="self-start"] {
+  background-color: var(--gray) !important;
+  color: var(--text-main) !important;
+  border-color: var(--border-light) !important;
+}
+
+/* Client Portal indicators block */
+div[class*="bg-[#10192d]"], div[class*="bg-blue-950/20"] {
+  background-color: var(--gray) !important;
+  border-color: var(--border-light) !important;
+}
+
+/* Footer Styling mapping to design standard */
+footer {
+  background-color: var(--navy) !important;
+  color: rgba(255, 255, 255, 0.6) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+footer h1, footer h2, footer h3, footer h4, footer h5, footer h6,
+footer span, footer button, footer text, footer a {
+  color: var(--white) !important;
+}
+
+footer span[class*="text-gray-650"], footer span.text-gray-400, footer div.text-gray-400 {
+  color: rgba(255,255,255,0.4) !important;
+}
+
+/* Custom Floating Badge classes to match the HTML example */
+.badge {
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 99px;
+  background: rgba(253, 184, 19, 0.15) !important;
+  color: var(--navy) !important;
+  font-weight: 700 !important;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  display: inline-block;
+}
+
+/* Highlighted green indicators */
+.h-1\.5.w-1\.5.bg-emerald-400 {
+  background-color: var(--green) !important;
+}
+.text-emerald-400, .text-cyan-400 {
+  color: var(--green) !important;
+}
+
+/* Ensure company texts inside headers match correctly */
+#company-text span[class*="text-white"] {
+  color: var(--navy) !important;
+}
+
+#company-text span[class*="text-gray-400"] {
+  color: var(--text-muted) !important;
+}
+
+/* ========================================================
+   PREMIUM PLATFORM-WIDE ANIMANTION & GLOW EFFECTS
+   ======================================================== */
+
+@keyframes premiumFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes premiumFloatSecondary {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  50% { transform: translateY(-4px) translateX(4px); }
+}
+
+@keyframes specularLight {
+  0% { transform: translate(-100%, -100%) rotate(45deg); }
+  100% { transform: translate(150%, 150%) rotate(45deg); }
+}
+
+@keyframes glowPulseGold {
+  0%, 100% { box-shadow: 0 4px 14px -3px rgba(253, 184, 19, 0.2); }
+  50% { box-shadow: 0 4px 25px 2px rgba(253, 184, 19, 0.5); }
+}
+
+@keyframes glowPulseBlue {
+  0%, 100% { box-shadow: 0 4px 14px -3px rgba(10, 35, 66, 0.15); }
+  50% { box-shadow: 0 4px 25px 2px rgba(10, 35, 66, 0.35); }
+}
+
+/* Floating animation utilities */
+.animate-premium-float {
+  animation: premiumFloat 6s ease-in-out infinite;
+}
+
+.animate-premium-float-sec {
+  animation: premiumFloatSecondary 5s ease-in-out infinite;
+}
+
+/* Dynamic pulsing glow effects */
+.animate-pulse-glow-gold {
+  animation: glowPulseGold 4s infinite ease-in-out;
+}
+
+.animate-pulse-glow-blue {
+  animation: glowPulseBlue 4.5s infinite ease-in-out;
+}
+
+/* Premium Navigation Glassmorphism Layout */
+.glass-floating-nav {
+  background: rgba(255, 255, 255, 0.82) !important;
+  backdrop-filter: blur(14px) saturate(180%);
+  border: 1px solid rgba(10, 35, 66, 0.08) !important;
+  box-shadow: 0 10px 30px -10px rgba(10, 35, 66, 0.08), 0 1px 3px rgba(10, 35, 66, 0.02) !important;
+}
+
+.dark-theme .glass-floating-nav {
+  background: rgba(11, 19, 43, 0.85) !important;
+  backdrop-filter: blur(14px) saturate(180%);
+  border: 1px solid rgba(248, 250, 252, 0.09) !important;
+  box-shadow: 0 12px 36px -12px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Elegant and modern premium interactive state for cards and list slates with hover-glowing blue accent */
+.card-premium-interactive {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.card-premium-interactive:hover,
+div[class*="bg-[#030913]"]:hover,
+div[class*="bg-[#060c18]"]:hover,
+div[class*="bg-[#050b16]"]:hover,
+div[class*="bg-[#040916]"]:hover,
+li[class*="bg-[#0a1120]"]:hover,
+#diy-troubleshooting-hub:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 20px 40px -10px rgba(59, 130, 246, 0.25), 0 0 25px 3px rgba(59, 130, 246, 0.3) !important;
+  border-color: rgba(59, 130, 246, 0.5) !important;
+}
+
+.dark-theme .card-premium-interactive:hover,
+.dark-theme div[class*="bg-[#030913]"]:hover,
+.dark-theme div[class*="bg-[#060c18]"]:hover,
+.dark-theme div[class*="bg-[#050b16]"]:hover,
+.dark-theme div[class*="bg-[#040916]"]:hover,
+.dark-theme li[class*="bg-[#0a1120]"]:hover,
+.dark-theme #diy-troubleshooting-hub:hover {
+  box-shadow: 0 20px 45px -12px rgba(0,0,0,0.6), 0 0 30px 4px rgba(59, 130, 246, 0.4) !important;
+  border-color: rgba(59, 130, 246, 0.6) !important;
+}
+
+/* Tab buttons and sub-navigation lists with deep/neon blue hover glow */
+header nav button:hover,
+div[class*="bg-[#030913]"] button:hover,
+div[class*="bg-[#060c18]"] button:hover,
+button[class*="tab-"]:hover,
+button[id*="tab-"]:hover,
+button[id*="btn-"]:hover,
+button[class*="active-tab"]:hover {
+  border-color: rgba(59, 130, 246, 0.5) !important;
+  box-shadow: 0 0 15px 1px rgba(59, 130, 246, 0.35) !important;
+  color: #3b82f6 !important;
+  background-color: rgba(59, 130, 246, 0.08) !important;
+  transform: translateY(-2px);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+/* Text elements (headings, titles, spans, paragraphs) glowing blue on hover */
+h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover,
+.text-white:hover,
+span:hover,
+p:hover,
+a:hover {
+  text-shadow: 0 0 6px rgba(59, 130, 246, 0.5), 0 0 18px rgba(59, 130, 246, 0.2) !important;
+  color: #3b82f6 !important;
+  transition: all 0.3s ease !important;
+}
+
+/* Clean specular dynamic single reflect sweep on hover, luxurious detail */
+.card-premium-interactive::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    transparent 45%,
+    rgba(255, 255, 255, 0.14) 50%,
+    transparent 55%
+  );
+  transform: translate(-100%, -100%) rotate(45deg);
+  transition: none;
+  pointer-events: none;
+}
+
+.dark-theme .card-premium-interactive::after {
+  background: linear-gradient(
+    135deg,
+    transparent 45%,
+    rgba(255, 255, 255, 0.08) 50%,
+    transparent 55%
+  );
+}
+
+.card-premium-interactive:hover::after {
+  animation: specularLight 1.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Highlight Indicator glow backgrounds */
+.glow-badge-aurora {
+  background: linear-gradient(135deg, rgba(253, 184, 19, 0.15) 0%, rgba(10, 35, 66, 0.05) 100%) !important;
+  border: 1px solid rgba(253, 184, 19, 0.25) !important;
+  box-shadow: 0 0 12px 1px rgba(253, 184, 19, 0.04) !important;
+}
+
+.dark-theme .glow-badge-aurora {
+  background: linear-gradient(135deg, rgba(253, 184, 19, 0.2) 0%, rgba(11, 19, 43, 0.4) 100%) !important;
+  border: 1px solid rgba(253, 184, 19, 0.3) !important;
+}
+
