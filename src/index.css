@@ -19,43 +19,49 @@
    ======================================================== */
 
 :root {
-  --navy: #0A2342;
+  --navy: #032b49;  /* Deep Sea-blue */
   --gold: #FDB813;
-  --white: #FFFFFF;
-  --gray: #F5F7FA;
+  --white: #edf8ff; /* Soft sky-foam tint */
+  --gray: #d0ecfc;  /* Luminous skyblue background */
   --green: #16A34A;
-  --text-main: #1F2937;
-  --text-muted: #56657a;
-  --border-light: rgba(10, 35, 66, 0.08);
+  --text-main: #022036;
+  --text-muted: #475d6e;
+  --border-light: rgba(10, 50, 80, 0.12);
 }
 
 .dark-theme, html.dark-theme {
-  --navy: #F8FAFC;
+  --navy: #ffffff;
   --gold: #FDB813;
-  --white: #061d3c; /* Pristine Royal Seablue container background */
-  --gray: #020b18;  /* Luxurious Midnight Ocean Seablue background */
+  --white: #0a2d4a; /* Pristine Royal Seablue container background */
+  --gray: #031c30;  /* Luxurious Midnight Ocean Seablue background */
   --green: #22C55E;
-  --text-main: #F1F5F9;
-  --text-muted: #94A3B8;
-  --border-light: rgba(245, 247, 250, 0.12);
+  --text-main: #f0f9ff;
+  --text-muted: #93c5fd; /* Soft skyblue text helper tint */
+  --border-light: rgba(56, 189, 248, 0.22); /* Glowing light skyblue borders */
 }
 
 /* Dark mode generic overrides */
 .dark-theme header {
-  background-color: rgba(11, 19, 43, 0.95) !important;
-  border-bottom: 1px solid rgba(248, 250, 252, 0.1) !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  z-index: 99999 !important;
+  background-color: #040916 !important; /* Solid dark color, never transparent */
+  border-bottom: 2px solid var(--gold) !important;
   box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.4) !important;
 }
 
 .dark-theme footer {
-  background-color: #050914 !important;
+  background-color: #052033 !important;
   border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
 }
 
 .dark-theme input, 
 .dark-theme select, 
 .dark-theme textarea {
-  background-color: #050912 !important;
+  background-color: #04253d !important;
   border-color: rgba(248, 250, 252, 0.2) !important;
 }
 
@@ -112,6 +118,62 @@
 /* Body & Core Containers Resets */
 html {
   scroll-behavior: smooth !important;
+  overflow-y: auto !important; /* Force vertical scrollbar container */
+}
+
+/* Premium Unified Brand Scrollbar Customizer */
+::-webkit-scrollbar {
+  width: 10px !important;
+  height: 10px !important;
+  display: block !important;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--gray) !important;
+  border-left: 1px solid var(--border-light) !important;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(10, 35, 66, 0.4) !important;
+  border: 2px solid var(--gray) !important;
+  border-radius: 9999px !important;
+  transition: all 0.2s ease !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--navy) !important;
+}
+
+.dark-theme ::-webkit-scrollbar-track {
+  background: #030812 !important;
+  border-left: 1px solid rgba(253, 184, 19, 0.1) !important;
+}
+
+.dark-theme ::-webkit-scrollbar-thumb {
+  background: rgba(253, 184, 19, 0.4) !important;
+  border: 2px solid #030812 !important;
+  border-radius: 9999px !important;
+}
+
+.dark-theme ::-webkit-scrollbar-thumb:hover {
+  background: var(--gold) !important;
+}
+
+/* Firefox compatibility */
+* {
+  scrollbar-width: auto !important;
+  scrollbar-color: rgba(10, 35, 66, 0.4) var(--gray) !important;
+}
+
+.dark-theme * {
+  scrollbar-color: rgba(253, 184, 19, 0.4) #030812 !important;
+}
+
+body {
+  padding-top: 140px !important;
+}
+body:not(.has-fixed-header) {
+  padding-top: 0px !important;
 }
 body, html, #root {
   background-color: var(--gray) !important;
@@ -240,7 +302,13 @@ svg {
 
 /* Sticky Header Customization */
 header {
-  background-color: rgba(255, 255, 255, 0.95) !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  z-index: 99999 !important;
+  background-color: #ffffff !important; /* Solid light color, never transparent */
   border-bottom: 1px solid rgba(10, 35, 66, 0.06) !important;
   box-shadow: 0 4px 20px -5px rgba(10, 35, 66, 0.03) !important;
 }
@@ -511,7 +579,7 @@ footer span[class*="text-gray-650"], footer span.text-gray-400, footer div.text-
 }
 
 .dark-theme .glass-floating-nav {
-  background: rgba(11, 19, 43, 0.85) !important;
+  background: rgba(7, 45, 74, 0.85) !important;
   backdrop-filter: blur(14px) saturate(180%);
   border: 1px solid rgba(248, 250, 252, 0.09) !important;
   box-shadow: 0 12px 36px -12px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.3) !important;

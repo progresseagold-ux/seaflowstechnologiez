@@ -18,12 +18,12 @@ export default function SeaflowsMotionBackground({
 
   // Render different layers based on selection
   return (
-    <div className="fixed inset-0 -z-50 w-full h-full overflow-hidden bg-gradient-to-b from-[#021025] via-[#010a18] to-[#01050e] pointer-events-none transition-colors duration-1000">
+    <div className="fixed inset-0 -z-50 w-full h-full overflow-hidden bg-gradient-to-tr from-[#0284c7] via-[#0ea5e9] to-[#FDB813] pointer-events-none transition-colors duration-1000">
       
-      {/* Dynamic Blend Overlays to maintain contrast accessibility */}
-      <div className="absolute inset-0 bg-[#020a1c]/55 z-10" />
-      <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#020a1c] to-transparent z-10" />
-      <div className="absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-[#020a1c] to-transparent z-10" />
+      {/* Dynamic Blend Overlays to maintain contrast accessibility and a premium glowing luster */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#022a44]/35 via-transparent to-[#141d06]/25 z-10" />
+      <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#021f35]/50 to-transparent z-10" />
+      <div className="absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-[#021f35]/40 to-transparent z-10" />
 
       <AnimatePresence mode="wait">
         {style === 'cosmos' && (
@@ -47,7 +47,7 @@ export default function SeaflowsMotionBackground({
                 repeat: Infinity,
                 ease: "easeInOut"
               }}
-              className="absolute top-[15%] left-[8%] w-[42rem] h-[42rem] rounded-full bg-gradient-to-tr from-[#0a2342]/45 via-[#0A2342]/20 to-[#FDB813]/16 blur-[110px]"
+              className="absolute top-[15%] left-[8%] w-[42rem] h-[42rem] rounded-full bg-gradient-to-tr from-[#0284c7]/45 via-[#38bdf8]/35 to-[#FDB813]/25 blur-[110px]"
             />
 
             <motion.div
@@ -61,7 +61,7 @@ export default function SeaflowsMotionBackground({
                 repeat: Infinity,
                 ease: "easeInOut"
               }}
-              className="absolute bottom-[15%] right-[8%] w-[48rem] h-[48rem] rounded-full bg-gradient-to-br from-[#FDB813]/15 via-[#123661]/25 to-[#020c1b]/5 blur-[130px]"
+              className="absolute bottom-[15%] right-[8%] w-[48rem] h-[48rem] rounded-full bg-gradient-to-br from-[#FDB813]/25 via-[#0284c7]/30 to-[#023b59]/5 blur-[130px]"
             />
 
             {/* Central Seablue & Gold Ambient Transition Glow */}
@@ -75,7 +75,7 @@ export default function SeaflowsMotionBackground({
                 repeat: Infinity,
                 ease: "easeInOut"
               }}
-              className="absolute top-[35%] left-[30%] w-[32rem] h-[32rem] rounded-full bg-gradient-to-r from-[#0d2a4e]/25 to-[#FDB813]/8 blur-[100px]"
+              className="absolute top-[35%] left-[30%] w-[32rem] h-[32rem] rounded-full bg-gradient-to-r from-[#38bdf8]/35 to-[#FDB813]/20 blur-[100px]"
             />
 
             {/* Subtle starlight starry layer using HTML indicators */}
@@ -93,8 +93,8 @@ export default function SeaflowsMotionBackground({
             className="absolute inset-0 w-full h-full mix-blend-screen"
           >
             {/* Ambient Seablue & Gold backing glows inside Solar */}
-            <div className="absolute top-[10%] left-[20%] w-[38rem] h-[38rem] rounded-full bg-[#0A2342]/65 blur-[120px] pointer-events-none" />
-            <div className="absolute bottom-[15%] right-[25%] w-[42rem] h-[42rem] rounded-full bg-[#FDB813]/12 blur-[140px] pointer-events-none" />
+            <div className="absolute top-[10%] left-[20%] w-[38rem] h-[38rem] rounded-full bg-[#0284c7]/50 blur-[120px] pointer-events-none" />
+            <div className="absolute bottom-[15%] right-[25%] w-[42rem] h-[42rem] rounded-full bg-[#FDB813]/22 blur-[140px] pointer-events-none" />
 
             {/* High-quality generated solar macrogrid panning */}
             <motion.img

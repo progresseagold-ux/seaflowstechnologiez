@@ -118,15 +118,36 @@ type ThreeContext = {
 };
 
 function createThreeForCanvas(canvas: HTMLCanvasElement, width: number, height: number): ThreeContext | null {
+  const originalConsoleError = console.error;
+  const originalConsoleWarn = console.warn;
+  
+  // Temporarily suppress THREE and WebGL context-creation warnings/errors in console during init
+  console.error = (...args: any[]) => {
+    if (args.some(arg => typeof arg === "string" && (arg.includes("THREE") || arg.includes("WebGL") || arg.includes("context")))) {
+      return;
+    }
+    originalConsoleError.apply(console, args);
+  };
+  
+  console.warn = (...args: any[]) => {
+    if (args.some(arg => typeof arg === "string" && (arg.includes("THREE") || arg.includes("WebGL") || arg.includes("context")))) {
+      return;
+    }
+    originalConsoleWarn.apply(console, args);
+  };
+
   try {
-    // Check if WebGL is supported by browser capabilities
+    // Double-check if WebGL is supported by browser capabilities
     const tempCanvas = document.createElement("canvas");
-    const hasWebGL = !!(
-      window.WebGLRenderingContext &&
-      (tempCanvas.getContext("webgl") || tempCanvas.getContext("experimental-webgl"))
-    );
-    if (!hasWebGL) {
-      console.warn("WebGL context not supported by environment.");
+    let gl = null;
+    try {
+      gl = tempCanvas.getContext("webgl", { failIfMajorPerformanceCaveat: false }) ||
+           tempCanvas.getContext("experimental-webgl", { failIfMajorPerformanceCaveat: false });
+    } catch (err) {
+      // context retrieval failed
+    }
+
+    if (!gl) {
       return null;
     }
 
@@ -154,8 +175,11 @@ function createThreeForCanvas(canvas: HTMLCanvasElement, width: number, height: 
 
     return { renderer, scene, camera, material, mesh, geometry };
   } catch (e) {
-    console.warn("Failed to initialize WebGL renderer context gracefully, falling back.", e);
     return null;
+  } finally {
+    // Restore original logger methods cleanly
+    console.error = originalConsoleError;
+    console.warn = originalConsoleWarn;
   }
 }
 

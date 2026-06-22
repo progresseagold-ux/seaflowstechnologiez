@@ -35,8 +35,9 @@ export default function App() {
   const [isAuthLoading, setIsAuthLoading] = useState(true);
   const navigationScrollRef = useRef<HTMLDivElement | null>(null);
 
-  // Auto Scroll-Up floating action state
+  // Auto Scroll-Up floating action state and progress tracking
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
   const [isBgControlOpen, setIsBgControlOpen] = useState(false);
 
   useEffect(() => {
@@ -45,6 +46,15 @@ export default function App() {
         setShowScrollTop(true);
       } else {
         setShowScrollTop(false);
+      }
+
+      // Calculate vertical scroll percentage dynamically
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (totalHeight > 0) {
+        const progress = (window.scrollY / totalHeight) * 100;
+        setScrollProgress(progress);
+      } else {
+        setScrollProgress(0);
       }
     };
     window.addEventListener('scroll', handleScroll);
@@ -123,6 +133,18 @@ export default function App() {
     setCustomQuotePrices(newPrices);
     localStorage.setItem('seaflows_custom_quote_prices', JSON.stringify(newPrices));
   };
+
+  // Synchronize body class for fixed header padding layout
+  useEffect(() => {
+    if (currentUser?.isLoggedIn) {
+      document.body.classList.add('has-fixed-header');
+    } else {
+      document.body.classList.remove('has-fixed-header');
+    }
+    return () => {
+      document.body.classList.remove('has-fixed-header');
+    };
+  }, [currentUser?.isLoggedIn]);
 
   // Session Tracking & Reactive updates
   useEffect(() => {
@@ -647,9 +669,37 @@ export default function App() {
       {/* Immersive Motion Background Layer */}
       <SeaflowsMotionBackground style={activeBg} />
       
+      {/* Modern Horizontal Scroll Progress Bar */}
+      <div 
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: `${scrollProgress}%`,
+          height: '4px',
+          background: 'linear-gradient(to right, #FDB813, #FF9E02, #FDB813)',
+          boxShadow: '0 0 12px rgba(253, 184, 19, 0.95), 0 0 6px rgba(253, 184, 19, 0.65)',
+          zIndex: 1000000,
+          opacity: scrollProgress > 0.5 ? 1 : 0,
+          transition: 'opacity 0.2s ease, width 0.05s ease-out',
+          pointerEvents: 'none'
+        }}
+        id="seaflows-scroll-progress-indicator"
+      />
+      
       {/* HEADER RAIL */}
       {currentUser?.isLoggedIn && (
-        <header className="sticky top-0 bg-[#040916]/90 backdrop-blur-md border-b border-gray-900 z-40 transition-colors">
+        <header 
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            width: '100%',
+            zIndex: 99999
+          }}
+          className="bg-[#040916] border-b border-gray-900 transition-colors"
+        >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex justify-between items-center">
             
             <div className="cursor-pointer" onClick={() => setActiveTab('home')}>
@@ -770,7 +820,14 @@ export default function App() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="lg:hidden bg-[#040916] border-b border-gray-900 px-4 py-6 flex flex-col gap-3.5 z-30"
+            style={{
+              position: 'fixed',
+              top: '72px',
+              left: 0,
+              right: 0,
+              zIndex: 99998
+            }}
+            className="lg:hidden bg-[#040916] border-b border-gray-900 px-4 py-6 flex flex-col gap-3.5 shadow-xl"
           >
             {[
               { id: 'home', label: 'Explore Home' },
@@ -811,7 +868,7 @@ export default function App() {
       <div ref={navigationScrollRef} className="scroll-mt-24" />
 
       {/* PRIMARY ACTIVE SCENE RENDER */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 relative overflow-hidden">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 relative overflow-visible">
         {/* Ambient background particles and subtle glow blobs for premium high-tech feel */}
         <div className="absolute top-[5%] left-[2%] w-64 h-64 rounded-full bg-gradient-to-tr from-[#FDB813]/3 to-transparent blur-3xl pointer-events-none animate-premium-float" />
         <div className="absolute top-[35%] right-[2%] w-80 h-80 rounded-full bg-gradient-to-br from-[#0A2342]/4 to-transparent blur-3xl pointer-events-none animate-premium-float-sec" />
