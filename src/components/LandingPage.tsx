@@ -1,9 +1,10 @@
 import React from 'react';
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 import { 
   Sun, Shield, Video, Calculator as CalcIcon, 
   ArrowUpRight, Wrench, Sparkles, ShieldCheck, 
-  Tv, Zap, HandCoins, ChevronRight, Star, Quote
+  Tv, Zap, HandCoins, ChevronRight, Star, Quote,
+  Menu, X
 } from 'lucide-react';
 import CompanyLogo from './CompanyLogo';
 import { TunnelHeroBackground } from './TunnelBackground';
@@ -121,6 +122,8 @@ export default function SeaflowsLandingPage({
   isDarkMode
 }: LandingPageProps) {
 
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+
   const scrollToFeatures = () => {
     const el = document.getElementById('features-section');
     if (el) {
@@ -179,46 +182,110 @@ export default function SeaflowsLandingPage({
 
       {/* 1. DEDICATED LANDING NAVIGATION BAR */}
       <ScrollReveal direction="down">
-        <div className="w-full bg-[#040916]/50 border border-gray-850/80 rounded-2xl px-6 py-4 flex justify-between items-center backdrop-blur-md backdrop-filter shadow-sm">
-          <div className="flex items-center gap-2">
-            <CompanyLogo />
+        <div className="relative">
+          <div className="w-full bg-[#040916]/50 border border-gray-850/80 rounded-2xl px-4 sm:px-6 py-4 flex justify-between items-center backdrop-blur-md backdrop-filter shadow-sm">
+            <div className="flex items-center gap-2">
+              <CompanyLogo />
+            </div>
+
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center gap-3">
+              <button 
+                onClick={scrollToFeatures}
+                className="text-[11px] font-bold uppercase tracking-wider text-gray-400 hover:text-[#FDB813] px-3 py-1.5 transition-colors cursor-pointer"
+              >
+                Features
+              </button>
+              
+              <motion.button
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                onClick={scrollToFeatures}
+                className="bg-transparent text-gray-200 border border-gray-850 hover:border-gray-700 hover:bg-gray-900/10 px-4 py-2 rounded-xl text-xs font-bold tracking-widest uppercase transition-colors cursor-pointer"
+              >
+                Get Started
+              </motion.button>
+              
+              <motion.button
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                onClick={onLoginClick}
+                className="bg-transparent text-gray-200 border border-gray-850 hover:border-gray-700 hover:bg-gray-900/10 px-4 py-2 rounded-xl text-xs font-bold tracking-widest uppercase transition-colors cursor-pointer"
+              >
+                Login
+              </motion.button>
+
+              <motion.button
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                onClick={onSignUpClick}
+                className="bg-transparent text-gray-200 border border-gray-850 hover:border-gray-700 hover:bg-gray-900/10 px-4 py-2 rounded-xl text-xs font-bold tracking-widest uppercase transition-colors cursor-pointer"
+              >
+                Sign Up
+              </motion.button>
+            </div>
+
+            {/* Mobile Navigation Trigger */}
+            <div className="flex md:hidden items-center">
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="p-2 rounded-lg border border-gray-850 bg-gray-950/45 hover:bg-gray-900/40 text-gray-400 hover:text-[#FDB813] transition-colors cursor-pointer flex items-center justify-center"
+                aria-label="Toggle landing menu"
+              >
+                {isMobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
+              </button>
+            </div>
           </div>
 
-          <div className="flex items-center gap-3">
-            <button 
-              onClick={scrollToFeatures}
-              className="hidden sm:inline-flex text-[11px] font-bold uppercase tracking-wider text-gray-400 hover:text-[#FDB813] px-3 py-1.5 transition-colors cursor-pointer"
-            >
-              Features
-            </button>
-            
-            <motion.button
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-              onClick={scrollToFeatures}
-              className="bg-transparent text-gray-200 border border-gray-850 hover:border-gray-700 hover:bg-gray-900/10 px-4 py-2 rounded-xl text-xs font-bold tracking-widest uppercase transition-colors cursor-pointer"
-            >
-              Get Started
-            </motion.button>
-            
-            <motion.button
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-              onClick={onLoginClick}
-              className="bg-transparent text-gray-200 border border-gray-850 hover:border-gray-700 hover:bg-gray-900/10 px-4 py-2 rounded-xl text-xs font-bold tracking-widest uppercase transition-colors cursor-pointer"
-            >
-              Login
-            </motion.button>
-
-            <motion.button
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-              onClick={onSignUpClick}
-              className="bg-transparent text-gray-200 border border-gray-850 hover:border-gray-700 hover:bg-gray-900/10 px-4 py-2 rounded-xl text-xs font-bold tracking-widest uppercase transition-colors cursor-pointer"
-            >
-              Sign Up
-            </motion.button>
-          </div>
+          {/* Smooth Dropdown Menu for Mobile */}
+          <AnimatePresence>
+            {isMobileMenuOpen && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.2 }}
+                className="absolute top-full left-0 right-0 mt-2 z-50 bg-[#040916]/95 border border-gray-850/90 rounded-2xl p-4 flex flex-col gap-2.5 backdrop-blur-lg shadow-xl md:hidden"
+              >
+                <button
+                  onClick={() => {
+                    scrollToFeatures();
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="w-full text-left font-bold text-xs uppercase tracking-wider text-gray-400 hover:text-[#FDB813] px-4 py-3 rounded-xl border border-gray-850/20 hover:border-gray-800 hover:bg-gray-900/30 transition-all cursor-pointer"
+                >
+                  Features
+                </button>
+                <button
+                  onClick={() => {
+                    scrollToFeatures();
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="w-full text-left font-bold text-xs uppercase tracking-wider text-gray-200 hover:text-white px-4 py-3 rounded-xl border border-gray-850/40 bg-[#0057B8]/20 hover:bg-[#0057B8]/30 transition-all cursor-pointer"
+                >
+                  Get Started
+                </button>
+                <button
+                  onClick={() => {
+                    onLoginClick();
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="w-full text-left font-bold text-xs uppercase tracking-wider text-gray-200 hover:text-white px-4 py-3 rounded-xl border border-gray-850 hover:bg-[#0057B8]/10 transition-all cursor-pointer"
+                >
+                  Login
+                </button>
+                <button
+                  onClick={() => {
+                    onSignUpClick();
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="w-full text-left font-bold text-xs uppercase tracking-wider text-[#FDB813] hover:text-amber-400 px-4 py-3 rounded-xl border border-gray-850 bg-amber-950/20 hover:bg-amber-950/30 transition-all cursor-pointer"
+                >
+                  Sign Up
+                </button>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </ScrollReveal>
 
