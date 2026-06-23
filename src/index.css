@@ -1,13 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --color-navy: #0A2342;
-  --color-gold: #FDB813;
-  --color-white: #FFFFFF;
-  --color-gray: #F5F7FA;
-  --color-green: #16A34A;
-  --color-text-main: #1F2937;
+  --color-navy: #0057B8;         /* Primary Color (Biro Blue) */
+  --color-gold: #D4AF37;         /* Accent Gold */
+  --color-white: #FFFFFF;        /* Background */
+  --color-gray: #F8FAFC;         /* Section Alternate Background */
+  --color-green: #10B981;
+  --color-text-main: #1E293B;    /* Text Primary */
+  --color-text-secondary: #64748B; /* Text Secondary */
   
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-heading: "Space Grotesk", sans-serif;
@@ -18,29 +19,28 @@
    CLEAN MINIMALISM THEME INJECTIONS & GLOBAL OVERRIDES
    ======================================================== */
 
-:root {
-  --navy: #032b49;  /* Deep Sea-blue */
-  --gold: #FDB813;
-  --white: #edf8ff; /* Soft sky-foam tint */
-  --gray: #d0ecfc;  /* Luminous skyblue background */
-  --green: #16A34A;
-  --text-main: #022036;
-  --text-muted: #475d6e;
-  --border-light: rgba(10, 50, 80, 0.12);
+:root, .dark-theme, html.dark-theme {
+  --primary-blue: #0057B8;
+  --secondary-blue: #3B82F6;
+  --accent-gold: #D4AF37;
+  --gold-hover: #F4C430;
+  --background: #FFFFFF;
+  --section-bg: #F8FAFC;
+  --text-primary: #1E293B;
+  --text-secondary: #64748B;
+
+  /* Legacy brand variables mapping for 100% complete automated support of existing utility groups */
+  --navy: #0057B8;             /* Biro Blue as primary */
+  --gold: #D4AF37;             /* Accent Gold */
+  --white: #FFFFFF;            /* Pristine White Background */
+  --gray: #F8FAFC;             /* Light Gray Section BG */
+  --green: #10B981;
+  --text-main: #1E293B;        /* Text Primary */
+  --text-muted: #64748B;       /* Text Secondary */
+  --border-light: rgba(0, 87, 184, 0.08); /* Subtle 8% Biro Blue border framing */
 }
 
-.dark-theme, html.dark-theme {
-  --navy: #ffffff;
-  --gold: #FDB813;
-  --white: #0a2d4a; /* Pristine Royal Seablue container background */
-  --gray: #031c30;  /* Luxurious Midnight Ocean Seablue background */
-  --green: #22C55E;
-  --text-main: #f0f9ff;
-  --text-muted: #93c5fd; /* Soft skyblue text helper tint */
-  --border-light: rgba(56, 189, 248, 0.22); /* Glowing light skyblue borders */
-}
-
-/* Dark mode generic overrides */
+/* Dark mode generic overrides redirected to Biro Blue & Gold Light theme */
 .dark-theme header {
   position: fixed !important;
   top: 0 !important;
@@ -48,71 +48,74 @@
   right: 0 !important;
   width: 100% !important;
   z-index: 99999 !important;
-  background-color: #040916 !important; /* Solid dark color, never transparent */
+  background-color: #ffffff !important;
   border-bottom: 2px solid var(--gold) !important;
-  box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.4) !important;
+  box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.05) !important;
 }
 
 .dark-theme footer {
-  background-color: #052033 !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+  background-color: var(--navy) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
 
 .dark-theme input, 
 .dark-theme select, 
 .dark-theme textarea {
-  background-color: #04253d !important;
-  border-color: rgba(248, 250, 252, 0.2) !important;
+  background-color: var(--white) !important;
+  border-color: rgba(0, 87, 184, 0.15) !important;
+  color: var(--text-main) !important;
 }
 
 .dark-theme input:focus, 
 .dark-theme select:focus, 
 .dark-theme textarea:focus {
-  border-color: var(--gold) !important;
-  box-shadow: 0 0 0 3px rgba(253, 184, 19, 0.15) !important;
+  border-color: var(--navy) !important;
+  box-shadow: 0 0 0 3px rgba(0, 87, 184, 0.08) !important;
 }
 
-/* Sub-Tab Navigation Overrides for dark mode */
+/* Sub-Tab Navigation Overrides */
 .dark-theme div[class*="bg-[#030913]"] button,
 .dark-theme div[class*="bg-[#060c18]"] button {
-  border-color: rgba(248, 250, 252, 0.12) !important;
+  border-color: rgba(0, 87, 184, 0.1) !important;
+  background-color: var(--gray) !important;
+  color: var(--text-muted) !important;
 }
 
 .dark-theme div[class*="bg-[#030913]"] button[class*="bg-[#FDB813]"],
 .dark-theme div[class*="bg-[#060c18]"] button[class*="bg-[#FDB813]"],
 .dark-theme div[class*="bg-[#030913]"] button[class*="text-[#0A2342]"][class*="bg-[#FDB813]"] {
   background-color: var(--gold) !important;
-  color: #0A2342 !important;
+  color: var(--white) !important;
   border-color: var(--gold) !important;
 }
 
 /* Active Header item in dark theme */
 .dark-theme header nav button[class*="text-[#FDB813]"],
 .dark-theme header nav button[class*="text-\[\#FDB813\]"] {
-  color: var(--gold) !important;
-  background-color: #0F1A36 !important;
-  border-color: rgba(253, 184, 19, 0.4) !important;
+  color: var(--navy) !important;
+  background-color: var(--gray) !important;
+  border-color: rgba(0, 87, 184, 0.15) !important;
 }
 
 /* Theme Toggle Button Styling */
 .dark-theme-toggle {
-  background-color: rgba(10, 35, 66, 0.04) !important;
-  border: 1px solid rgba(10, 35, 66, 0.08) !important;
+  background-color: rgba(0, 87, 184, 0.04) !important;
+  border: 1px solid rgba(0, 87, 184, 0.08) !important;
 }
 
 .dark-theme-toggle:hover {
-  background-color: rgba(10, 35, 66, 0.08) !important;
-  border-color: rgba(10, 35, 66, 0.15) !important;
+  background-color: rgba(0, 87, 184, 0.08) !important;
+  border-color: rgba(0, 87, 184, 0.15) !important;
 }
 
 .dark-theme .dark-theme-toggle {
-  background-color: rgba(248, 250, 252, 0.05) !important;
-  border: 1px solid rgba(248, 250, 252, 0.1) !important;
+  background-color: rgba(0, 87, 184, 0.04) !important;
+  border: 1px solid rgba(0, 87, 184, 0.08) !important;
 }
 
 .dark-theme .dark-theme-toggle:hover {
-  background-color: rgba(248, 250, 252, 0.1) !important;
-  border-color: rgba(248, 250, 252, 0.2) !important;
+  background-color: rgba(0, 87, 184, 0.08) !important;
+  border-color: rgba(0, 87, 184, 0.15) !important;
 }
 
 /* Body & Core Containers Resets */
@@ -134,7 +137,7 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(10, 35, 66, 0.4) !important;
+  background: rgba(0, 87, 184, 0.4) !important;
   border: 2px solid var(--gray) !important;
   border-radius: 9999px !important;
   transition: all 0.2s ease !important;
@@ -145,13 +148,13 @@ html {
 }
 
 .dark-theme ::-webkit-scrollbar-track {
-  background: #030812 !important;
-  border-left: 1px solid rgba(253, 184, 19, 0.1) !important;
+  background: var(--gray) !important;
+  border-left: 1px solid var(--border-light) !important;
 }
 
 .dark-theme ::-webkit-scrollbar-thumb {
-  background: rgba(253, 184, 19, 0.4) !important;
-  border: 2px solid #030812 !important;
+  background: rgba(0, 87, 184, 0.4) !important;
+  border: 2px solid var(--gray) !important;
   border-radius: 9999px !important;
 }
 
@@ -162,11 +165,11 @@ html {
 /* Firefox compatibility */
 * {
   scrollbar-width: auto !important;
-  scrollbar-color: rgba(10, 35, 66, 0.4) var(--gray) !important;
+  scrollbar-color: rgba(0, 87, 184, 0.4) var(--gray) !important;
 }
 
 .dark-theme * {
-  scrollbar-color: rgba(253, 184, 19, 0.4) #030812 !important;
+  scrollbar-color: rgba(0, 87, 184, 0.4) var(--gray) !important;
 }
 
 body {
@@ -179,6 +182,143 @@ body, html, #root {
   background-color: var(--gray) !important;
   color: var(--text-main) !important;
   font-family: "Inter", sans-serif !important;
+  font-size: 18px !important;
+  font-weight: 500 !important;
+  line-height: 1.6 !important;
+}
+
+/* Typography & Accessibility Enhancements */
+h1 {
+  font-size: clamp(48px, 6vw, 64px) !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.3px !important;
+  line-height: 1.25 !important;
+}
+
+h2 {
+  font-size: clamp(36px, 4.5vw, 48px) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.3px !important;
+  line-height: 1.3 !important;
+}
+
+h3 {
+  font-size: clamp(28px, 3.5vw, 32px) !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.3px !important;
+  line-height: 1.4 !important;
+}
+
+h4 {
+  font-size: 24px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.3px !important;
+}
+
+p, .p-body, select, input, textarea, label {
+  font-size: 18px !important;
+  font-weight: 500 !important;
+  line-height: 1.6 !important;
+}
+
+/* Ensure all buttons and navigation elements comply with 16px minimum and 600 font weight */
+.nav-link,
+button,
+.btn,
+button[class*="py-"], 
+button[class*="px-"],
+a[class*="bg-"],
+[role="button"] {
+  font-size: max(16px, 1rem) !important;
+  font-weight: 600 !important;
+}
+
+/* Card titles and important subheadings require a minimum font weight of 700 */
+.card-title,
+[class*="card"] h3,
+[class*="card"] h4,
+[class*="bg-"] h3,
+[class*="bg-"] h4 {
+  font-weight: 700 !important;
+}
+
+/* Ensure sufficient accessibility contrasts at all times */
+.text-white {
+  color: #FFFFFF !important;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.1) !important;
+}
+
+/* Premium Gold Text Visibility for Login elements */
+.text-gold-login {
+  color: #D4AF37 !important;
+  text-shadow: 0 0 12px rgba(212, 175, 55, 0.5), 0 1px 2px rgba(0,0,0,0.3) !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.5px !important;
+}
+
+/* Premium Corporate Brand Buttons */
+.login-button,
+.auth-button {
+  background: #0057B8 !important;
+  color: #FFFFFF !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  padding: 12px 24px !important;
+  border-radius: 12px !important;
+  border: none !important;
+  cursor: pointer !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 4px 12px rgba(0, 87, 184, 0.2) !important;
+}
+
+.login-button:hover,
+.auth-button:hover {
+  color: #FFFFFF !important;
+  background: #0057B8 !important;
+  transform: scale(1.05) !important;
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.6) !important;
+}
+
+/* Custom Login Tab Switcher Styling (Highly Visible, High-Contrast corporative identity) */
+#login-auth-tabs {
+  background-color: #030913 !important;
+  border: 1.5px solid #0057B8 !important; /* Biro Blue Frame border */
+  padding: 4px !important;
+  border-radius: 12px !important;
+}
+
+#login-auth-tabs button {
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.7px !important;
+  border-radius: 8px !important;
+  padding: 10px 16px !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+#login-auth-tabs button.active-auth-tab {
+  background-color: #0057B8 !important; /* Premium Biro Blue Active Tab */
+  color: #FFFFFF !important;            /* Pure White text */
+  border: 1px solid #D4AF37 !important;  /* Premium Gold border highlight */
+  box-shadow: 0 4px 12px rgba(0, 87, 184, 0.3) !important;
+}
+
+#login-auth-tabs button.inactive-auth-tab {
+  background-color: transparent !important;
+  color: #D4AF37 !important;            /* Premium Gold color for high visibility */
+  opacity: 0.85 !important;
+}
+
+#login-auth-tabs button.inactive-auth-tab:hover {
+  background-color: rgba(212, 175, 55, 0.1) !important; /* Subtle Gold highlight */
+  color: #FFFFFF !important;             /* Text becomes Pure White */
+  opacity: 1 !important;
 }
 
 /* Force Light Theme Colors on Dark Tailwind background utility classes */
@@ -288,11 +428,11 @@ button[class*="text-white"],
 
 /* Golden elements */
 .text-\[\#FDB813\], .text-solar-gold {
-  color: var(--navy) !important;
+  color: var(--gold) !important;
 }
 
-span.text-\[\#FDB813\] {
-  color: var(--navy) !important;
+span.text-\[\#FDB813\], div[class*="text-[#FDB813]"], h4[class*="text-[#FDB813]"] {
+  color: var(--gold) !important;
 }
 
 svg {
@@ -361,19 +501,33 @@ button.bg-\[\#FDB813\],
 a.bg-\[\#FDB813\],
 button[class*="bg-[#FDB813]"],
 button[class*="bg-amber-400"],
+button[class*="bg-[#1e345e]"],
+button[class*="bg-blue-"],
+button.bg-blue-600,
+button.bg-blue-700,
+.btn-primary,
 .btn-secondary {
-  background: var(--gold) !important;
-  color: #0A2342 !important;
+  background: var(--navy) !important; /* Biro Blue Primary */
+  color: #FFFFFF !important;
   font-weight: 700 !important;
-  box-shadow: 0 4px 14px -3px rgba(253, 184, 19, 0.4) !important;
+  box-shadow: 0 4px 14px -3px rgba(0, 87, 184, 0.4) !important;
   border: none !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 button.bg-\[\#FDB813\]:hover,
 button[class*="bg-[#FDB813]"]:hover,
+button[class*="bg-amber-400"]:hover,
+button[class*="bg-[#1e345e]"]:hover,
+button[class*="bg-blue-"]:hover,
+button.bg-blue-600:hover,
+button.bg-blue-700:hover,
+.btn-primary:hover,
 .btn-secondary:hover {
-  background: #fca800 !important;
-  box-shadow: 0 6px 20px -3px rgba(253, 184, 19, 0.6) !important;
+  background: var(--gold) !important; /* Gold on Hover */
+  color: #FFFFFF !important;
+  transform: scale(1.05) !important;
+  box-shadow: 0 6px 20px -3px rgba(212, 175, 55, 0.6) !important;
 }
 
 /* Transparent Outline Buttons */
@@ -382,10 +536,13 @@ button[class*="border-gray-700"] {
   background: transparent !important;
   color: var(--navy) !important;
   border: 1px solid var(--navy) !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
-button[class*="bg-transparent"][class*="text-white"]:hover {
-  background: rgba(10, 35, 66, 0.05) !important;
+button[class*="bg-transparent"][class*="text-white"]:hover,
+button[class*="border-gray-700"]:hover {
+  background: rgba(0, 87, 184, 0.05) !important;
+  transform: scale(1.05) !important;
 }
 
 /* Metric cards list */
@@ -615,7 +772,7 @@ li[class*="bg-[#0a1120]"]:hover,
   border-color: rgba(59, 130, 246, 0.6) !important;
 }
 
-/* Tab buttons and sub-navigation lists with deep/neon blue hover glow */
+/* Tab buttons and sub-navigation lists with luxurious Gold hover glow */
 header nav button:hover,
 div[class*="bg-[#030913]"] button:hover,
 div[class*="bg-[#060c18]"] button:hover,
@@ -623,22 +780,22 @@ button[class*="tab-"]:hover,
 button[id*="tab-"]:hover,
 button[id*="btn-"]:hover,
 button[class*="active-tab"]:hover {
-  border-color: rgba(59, 130, 246, 0.5) !important;
-  box-shadow: 0 0 15px 1px rgba(59, 130, 246, 0.35) !important;
-  color: #3b82f6 !important;
-  background-color: rgba(59, 130, 246, 0.08) !important;
+  border-color: var(--gold) !important;
+  box-shadow: 0 0 15px 1px rgba(212, 175, 55, 0.35) !important; /* Gold glow */
+  color: var(--navy) !important; /* Biro Blue text */
+  background-color: rgba(212, 175, 55, 0.08) !important; /* Soft gold backdrop */
   transform: translateY(-2px);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
-/* Text elements (headings, titles, spans, paragraphs) glowing blue on hover */
+/* Text elements (headings, titles, spans, paragraphs) glowing subtly on hover */
 h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover,
 .text-white:hover,
 span:hover,
 p:hover,
 a:hover {
-  text-shadow: 0 0 6px rgba(59, 130, 246, 0.5), 0 0 18px rgba(59, 130, 246, 0.2) !important;
-  color: #3b82f6 !important;
+  text-shadow: 0 0 6px rgba(0, 87, 184, 0.2), 0 0 18px rgba(212, 175, 55, 0.15) !important;
+  color: var(--navy) !important;
   transition: all 0.3s ease !important;
 }
 

@@ -169,7 +169,7 @@ export default function SeaflowsCustomerPortal({
 
           <button
             type="submit"
-            className="w-full bg-[#FDB813] hover:bg-amber-400 text-[#0A2342] py-2.5 rounded-lg text-xs font-heading font-extrabold tracking-widest uppercase transition-colors"
+            className="w-full auth-button tracking-widest uppercase"
           >
             {isRegistering ? 'INITIALIZE USER RECORD' : 'SECURE SIGN IN'}
           </button>

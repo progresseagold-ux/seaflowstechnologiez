@@ -314,10 +314,10 @@ export default function SeaflowsLoginPage({
         <div className="grid grid-cols-2 p-1 bg-[#030913] border border-gray-850 rounded-xl" id="login-auth-tabs">
           <button
             type="button"
-            className={`py-2 px-3 text-[10px] font-bold uppercase tracking-wider rounded-lg transition-all cursor-pointer ${
+            className={`py-2.5 px-3 text-[11px] font-extrabold uppercase tracking-wider rounded-lg transition-all cursor-pointer ${
               authMode === 'password'
-                ? 'bg-[#FDB813] text-[#0A2342] shadow-sm'
-                : 'text-gray-400 hover:text-white bg-transparent'
+                ? 'active-auth-tab shadow-sm'
+                : 'inactive-auth-tab text-gray-400 hover:text-white bg-transparent'
             }`}
             onClick={() => {
               setAuthMode('password');
@@ -332,10 +332,10 @@ export default function SeaflowsLoginPage({
           </button>
           <button
             type="button"
-            className={`py-2 px-3 text-[10px] font-bold uppercase tracking-wider rounded-lg transition-all cursor-pointer ${
+            className={`py-2.5 px-3 text-[11px] font-extrabold uppercase tracking-wider rounded-lg transition-all cursor-pointer ${
               authMode === 'otp'
-                ? 'bg-[#FDB813] text-[#0A2342] shadow-sm'
-                : 'text-gray-400 hover:text-white bg-transparent'
+                ? 'active-auth-tab shadow-sm'
+                : 'inactive-auth-tab text-gray-400 hover:text-white bg-transparent'
             }`}
             onClick={() => {
               setAuthMode('otp');
@@ -412,11 +412,11 @@ export default function SeaflowsLoginPage({
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-[#FDB813] hover:bg-amber-400 text-[#0A2342] py-3 rounded-lg text-xs font-heading font-extrabold tracking-widest uppercase transition-all flex items-center justify-center gap-1.5 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed mt-2"
+              className="w-full auth-button flex items-center justify-center gap-1.5 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed mt-2"
             >
               {isLoading ? (
                 <>
-                  <RefreshCw size={13} className="animate-spin text-[#0A2342]" />
+                  <RefreshCw size={13} className="animate-spin text-white" />
                   <span>Verifying Credentials...</span>
                 </>
               ) : (
@@ -449,11 +449,11 @@ export default function SeaflowsLoginPage({
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="w-full bg-[#FDB813] hover:bg-amber-400 text-[#0A2342] py-3 rounded-lg text-xs font-heading font-extrabold tracking-widest uppercase transition-all flex items-center justify-center gap-1.5 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed mt-2"
+                  className="w-full auth-button flex items-center justify-center gap-1.5 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed mt-2"
                 >
                   {isLoading ? (
                     <>
-                      <RefreshCw size={13} className="animate-spin text-[#0A2342]" />
+                      <RefreshCw size={13} className="animate-spin text-white" />
                       <span>Sending OTP...</span>
                     </>
                   ) : (
@@ -500,11 +500,11 @@ export default function SeaflowsLoginPage({
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="w-full bg-[#FDB813] hover:bg-amber-400 text-[#0A2342] py-3 rounded-lg text-xs font-heading font-extrabold tracking-widest uppercase transition-all flex items-center justify-center gap-1.5 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full auth-button flex items-center justify-center gap-1.5 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isLoading ? (
                     <>
-                      <RefreshCw size={13} className="animate-spin text-[#0A2342]" />
+                      <RefreshCw size={13} className="animate-spin text-white" />
                       <span>Verifying Code...</span>
                     </>
                   ) : (
@@ -590,8 +590,9 @@ export default function SeaflowsLoginPage({
             Don't have an active account yet?{' '}
             <button 
               onClick={onSignUpClick} 
-              className="text-[#FDB813] font-bold hover:underline cursor-pointer"
+              className="text-gold-login font-bold hover:underline cursor-pointer"
               disabled={isLoading}
+              style={{ color: '#D4AF37' }}
             >
               Sign Up Now
             </button>
@@ -694,11 +695,11 @@ export default function SeaflowsLoginPage({
                     type="submit"
                     id="submit-forgot-btn"
                     disabled={forgotLoading}
-                    className="flex-1 bg-[#FDB813] hover:bg-amber-400 text-[#0A2342] py-2.5 rounded-lg text-xs font-heading font-bold uppercase transition-[#FDB813] flex items-center justify-center gap-1.5 cursor-pointer disabled:opacity-50"
+                    className="flex-1 auth-button py-2.5 rounded-lg text-xs font-heading font-bold uppercase flex items-center justify-center gap-1.5 cursor-pointer disabled:opacity-50"
                   >
                     {forgotLoading ? (
                       <>
-                        <RefreshCw size={12} className="animate-spin text-[#0A2342]" />
+                        <RefreshCw size={12} className="animate-spin text-white" />
                         <span>Sending Link...</span>
                       </>
                     ) : (

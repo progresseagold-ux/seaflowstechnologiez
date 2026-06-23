@@ -529,11 +529,11 @@ CREATE TRIGGER on_auth_user_created
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full bg-[#FDB813] hover:bg-amber-400 text-[#0A2342] py-3 rounded-lg text-xs font-heading font-extrabold tracking-widest uppercase transition-all flex items-center justify-center gap-1.5 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed mt-2"
+            className="w-full auth-button flex items-center justify-center gap-1.5 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed mt-2"
           >
             {isLoading ? (
               <>
-                <RefreshCw size={13} className="animate-spin text-[#0A2342]" />
+                <RefreshCw size={13} className="animate-spin text-white" />
                 <span>Creating Records...</span>
               </>
             ) : (
@@ -547,8 +547,9 @@ CREATE TRIGGER on_auth_user_created
             Already have active records?{' '}
             <button 
               onClick={onLoginClick} 
-              className="text-[#FDB813] font-bold hover:underline cursor-pointer"
+              className="text-gold-login font-bold hover:underline cursor-pointer"
               disabled={isLoading}
+              style={{ color: '#D4AF37' }}
             >
               Sign In
             </button>

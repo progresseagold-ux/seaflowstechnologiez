@@ -205,16 +205,16 @@ export default function SeaflowsLandingPage({
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               onClick={onLoginClick}
-              className="bg-[#0A2342] hover:bg-[#123661] text-white border border-[#0A2342] px-4.5 py-2 rounded-xl text-xs font-bold tracking-widest uppercase transition-all cursor-pointer"
+              className="bg-transparent text-gray-200 border border-gray-850 hover:border-gray-700 hover:bg-gray-900/10 px-4 py-2 rounded-xl text-xs font-bold tracking-widest uppercase transition-colors cursor-pointer"
             >
               Login
             </motion.button>
 
             <motion.button
-              whileHover={{ scale: 1.03, y: -1, boxShadow: "0 10px 25px -5px rgba(253, 184, 19, 0.2)" }}
+              whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               onClick={onSignUpClick}
-              className="bg-[#FDB813] hover:bg-amber-400 text-[#0A2342] px-4.5 py-2 rounded-xl text-xs font-heading font-extrabold tracking-widest uppercase transition-all cursor-pointer shadow-md shadow-amber-500/10"
+              className="bg-transparent text-gray-200 border border-gray-850 hover:border-gray-700 hover:bg-gray-900/10 px-4 py-2 rounded-xl text-xs font-bold tracking-widest uppercase transition-colors cursor-pointer"
             >
               Sign Up
             </motion.button>
